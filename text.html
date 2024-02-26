@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Web</title>
+
+      <style>
+            .contain {
+                  height: 90vh;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+            }
+
+            .btn {
+
+                  justify-content: center;
+                  align-items: center;
+            }
+      </style>
+</head>
+
+<body>
+
+      <div class="contain">
+            <p id="quote-text">Web Development Class</p>
+
+
+            <button id="generate-btn">Generate</button>
+      </div>
+      <script>
+            var quoteText = document.getElementById("quote-text");
+            var generateButton = document.getElementById("generate-btn");
+            generateButton.addEventListener("click", function () {
+                  getFacts();
+            });
+           async function getFacts(){
+                 var response =await fetch("https://reqres.in/api/users/8");
+                 var json = await response.json();
+                 console.log(json);
+                
+                 quoteText.innerHTML=`
+                 <h3>${json.data.first_name}</h3>
+                 <p>${json.data.email}</p>
+                 <img src="${json.data.avatar}"/>
+                 `;
+                 
+            }
+      </script>
+</body>
+
+</html>
+
+
+       
